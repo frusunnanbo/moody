@@ -1,0 +1,24 @@
+on:
+  push:
+  # Triggers the workflow on push or pull request events but only for the main branch
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+name: Deploy!
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+        
+    - name: Deploy to Cloud Run
+      id: deploy
+      uses: google-github-actions/deploy-cloudrun@v0.2.0
+      with:
+        image: gcr.io/agile-islands-example/moody
+        service: hello-cloud-run
+        credentials: ${{ secrets.GCP_SA_KEY }}
+
+    - name: Show Output
+      run: echo ${{ steps.deploy.outputs.url }}
