@@ -11,12 +11,30 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Setup Cloud SDK
+      uses: google-github-actions/setup-gcloud@v0.2.0
+      with:
+        project_id: agile-islands-example
+        service_account_key: ${{ secrets.GCP_SA_KEY }}
+        export_default_credentials: true  # Set to true to authenticate the Cloud Run action
+
+    - name: Authorize Docker push
+      run: gcloud auth configure-docker
+
+    - name: Build and Push Container
+      run: |-
+        docker build -t gcr.io/agile-islands-example/moody:${{  github.sha }} example-app/
+        docker push gcr.io/agile-islands-example/moody::${{  github.sha }}
+
         
     - name: Deploy to Cloud Run
       id: deploy
       uses: google-github-actions/deploy-cloudrun@v0.2.0
       with:
-        image: gcr.io/agile-islands-example/moody:1.0.0
+        image: gcr.io/agile-islands-example/moody:${{ github.sha }}
         service: agile-islands-example
         region: europe-west1
         credentials: ${{ secrets.GCP_SA_KEY }}
