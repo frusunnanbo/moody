@@ -7,7 +7,7 @@ function App() {
       <header className="App-header">
         <img src={pia} alt="pia" />
         <p>
-          Hej hej
+          Hej hej hej
         </p>
       </header>
     </div>
