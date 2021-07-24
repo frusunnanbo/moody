@@ -26,7 +26,7 @@ jobs:
 
     - name: Build and Push Container
       run: |-
-        docker build -t gcr.io/agile-islands-example/moody:${{  github.sha }} example-app/
+        docker build -t gcr.io/agile-islands-example/moody:${{  github.sha }} .
         docker push gcr.io/agile-islands-example/moody::${{  github.sha }}
 
         
