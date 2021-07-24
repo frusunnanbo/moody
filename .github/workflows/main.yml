@@ -16,7 +16,7 @@ jobs:
       id: deploy
       uses: google-github-actions/deploy-cloudrun@v0.2.0
       with:
-        image: gcr.io/agile-islands-example/moody
+        image: gcr.io/agile-islands-example/moody:1.0.0
         service: agile-islands-example
         region: europe-west1
         credentials: ${{ secrets.GCP_SA_KEY }}
