@@ -1,15 +1,13 @@
-import pia from './pia.jpg';
 import './App.css';
+import MoodButton from './components/MoodButton'
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={pia} alt="pia" />
-        <p>
-          Hej hej hej
-        </p>
-      </header>
+      <MoodButton text="I'm happy" />
+      <MoodButton text="I feel sad" />
+      <MoodButton text="I'm angry" />
+      <MoodButton text="I feel scared" />
     </div>
   );
 }
