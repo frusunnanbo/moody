@@ -21,7 +21,7 @@ function MoodButton({ text, baseColor }) {
 
     return <StyledButton
         onClick={increaseIntensity}
-        style={{ backgroundColor: backgroundColor(intensity) }}>
+            style={{ backgroundColor: backgroundColor(intensity) }}>
         {text}
     </StyledButton>
 }
