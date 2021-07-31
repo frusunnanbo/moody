@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components'
 
 const StyledButton = styled.button`
@@ -7,7 +7,13 @@ const StyledButton = styled.button`
 `
 
 function MoodButton({ text }) {
-    return <StyledButton>{text}</StyledButton>
+    const [intensity, setIntensity] = useState(0);
+
+    const onClick = () => {
+        setIntensity(intensity + 1);
+    }
+
+    return <StyledButton onClick={onClick}>{text} intensity: { intensity }</StyledButton>
 }
 
 export default MoodButton;
