@@ -1,0 +1,13 @@
+{
+  "name": "moody-backend",
+  "version": "1.0.0",
+  "description": "Backend for testing-in-production example project.",
+  "main": "index.js",
+  "repository": "git@github.com:frusunnanbo/moody.git",
+  "author": "Pia Fåk Sunnanbo <frusunnanbo@users.noreply.github.com>",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

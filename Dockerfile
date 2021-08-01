@@ -3,18 +3,19 @@ FROM node:14 as build-deps
 # Create app directory
 WORKDIR /usr/src/app
 
-# Install app dependencies
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
-# where available (npm@5+)
+# Install frontend app dependencies
 COPY package.json yarn.lock ./
-
 RUN yarn
 COPY . ./
+
+# build an optimized frontend build
 RUN yarn build
 
-FROM node:14
-COPY --from=build-deps /usr/src/app/build /usr/src/app
+WORKDIR /usr/src/app/backend
 
-RUN yarn global add serve
-EXPOSE 5000
-CMD [ "serve", "-s","/usr/src/app" ]
+# Install backend dependencies
+ADD backend/server.js backend/package.json backend/yarn.lock ./
+RUN yarn
+
+EXPOSE 8080
+CMD [ "node","/usr/src/app/backend/server.js" ]
