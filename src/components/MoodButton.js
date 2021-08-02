@@ -13,7 +13,6 @@ function MoodButton({ text, baseColor, intensity, increaseIntensity }) {
     const backgroundColor = (intensity) => {
         return `rgba(${baseColor.r}, ${baseColor.g}, ${baseColor.b}, ${intensity * 0.01})`;
     }
-
     return <StyledButton
         onClick={increaseIntensity}
             style={{ backgroundColor: backgroundColor(intensity) }}>

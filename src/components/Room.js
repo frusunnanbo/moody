@@ -4,17 +4,13 @@ import MoodButton from "./MoodButton";
 
 function Room({ name }) {
     const [moods, updateMoods] = useState({
-        moods: {
             happy: 0,
             angry: 0,
             sad: 0,
             scared: 0,
-    }})
+    })
     useEffect(() => {
-        function handleMoodChange(moods) {
-            updateMoods(moods);
-        }
-        const subscriberId = MoodApi.subscribeForMoods(name, handleMoodChange);
+        const subscriberId = MoodApi.subscribeForMoods(name, updateMoods);
         return () => {
             MoodApi.unsubscribeForMoods(subscriberId)
         };
@@ -22,7 +18,7 @@ function Room({ name }) {
 
     const intensityIncreaser = function(mood) {
         return function () {
-            updateMoods(MoodApi.increaseMood(name, mood));
+            MoodApi.increaseMood(name, mood, updateMoods);
         }
     }
 
