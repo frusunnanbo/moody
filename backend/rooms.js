@@ -31,8 +31,12 @@ function moods(roomName) {
     return database[roomName];
 }
 
+function list() {
+    return Object.keys(database);
+}
+
 setInterval(() => {
     database.main = autoDecreaseMoods(database.main);
 }, 2000);
 
-module.exports = { moods, increaseMood };
+module.exports = { list, moods, increaseMood };
