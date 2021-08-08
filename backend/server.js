@@ -3,7 +3,6 @@ const bodyParser = require('body-parser');
 
 const path = require('path');
 
-const logger = require('./logger')
 const rooms = require('./rooms')
 
 const app = express();
@@ -19,7 +18,8 @@ app.get('/', function (req, res) {
 });
 
 app.get('/api/rooms/', function (req, res) {
-    res.json(rooms.list());
+    rooms.list()
+        .then(rooms => res.json(rooms))
 });
 
 app.get('/api/rooms/:room', function (req, res) {

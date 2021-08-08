@@ -1,3 +1,6 @@
+const firestore = require('./database');
+const logger = require('./logger');
+
 const database = {
     kitchen: {
         happy: 0,
@@ -31,8 +34,9 @@ function moods(roomName) {
     return database[roomName];
 }
 
-function list() {
-    return Object.keys(database);
+async function list() {
+    const rooms = await firestore.listRooms();
+    return rooms;
 }
 
 setInterval(() => {
