@@ -1,4 +1,3 @@
-
 function listRooms() {
     return window.fetch(`api/rooms/`)
         .then(response => response.json());
@@ -16,9 +15,9 @@ function increaseMood(roomName, mood, callback) {
 }
 
 function subscribeForMoods(roomName, updateHandler) {
+    fetchMoods(roomName).then(moods => updateHandler(moods));
     const subscriberId = window.setInterval(function () {
-        window.fetch(`/api/rooms/${roomName}`)
-            .then(response => response.json())
+        fetchMoods(roomName)
             .then(moods => updateHandler(moods));
     }, 1000);
     return subscriberId;
@@ -26,6 +25,11 @@ function subscribeForMoods(roomName, updateHandler) {
 
 function unsubscribeForMoods(subscriptionId) {
     window.clearInterval(subscriptionId)
+}
+
+function fetchMoods(roomName) {
+    return window.fetch(`/api/rooms/${roomName}`)
+        .then(response => response.json());
 }
 
 export { listRooms, increaseMood, subscribeForMoods, unsubscribeForMoods };
