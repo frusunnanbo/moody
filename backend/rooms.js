@@ -1,5 +1,5 @@
 const database = {
-    main: {
+    kitchen: {
         happy: 0,
         angry: 0,
         sad: 0,
@@ -36,7 +36,9 @@ function list() {
 }
 
 setInterval(() => {
-    database.main = autoDecreaseMoods(database.main);
+    Object.keys(database).forEach(room => {
+        database[room] = autoDecreaseMoods(database[room]);
+    });
 }, 2000);
 
 module.exports = { list, moods, increaseMood };

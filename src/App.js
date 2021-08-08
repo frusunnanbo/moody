@@ -11,7 +11,6 @@ import Room from './components/Room';
 import { useState, useEffect } from "react";
 
 function App() {
-
   const [rooms, setRooms] = useState([]);
   
   useEffect(() => {
@@ -20,16 +19,15 @@ function App() {
   }, []);
 
   return (
-      <Router>
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
+    <Router>
       <Switch>
-        <Route path="/main">
-          <Room name="main" />
-        </Route>
-        <Route path="/agileislands">
-          <Room name="agileislands" />
-        </Route>
+        {rooms.map((room) => {
+          return (
+            <Route key={ room } path={"/" + room}>
+              <Room name={ room } />
+            </Route>
+          );
+        }) }
         <Route path="/">
           <Home rooms={ rooms }/>
         </Route>
@@ -42,8 +40,8 @@ function Home({ rooms }) {
   return (
     <div>
       <ul>
-        {rooms.map((room, i) => {
-          return <LinkListItem roomName={room} />;
+        {rooms.map((room) => {
+          return <LinkListItem key={ room }roomName={room} />;
         })}
       </ul>
     </div>
