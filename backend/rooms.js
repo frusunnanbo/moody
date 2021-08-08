@@ -35,8 +35,7 @@ function moods(roomName) {
 }
 
 async function list() {
-    const rooms = await firestore.listRooms();
-    return rooms;
+    return firestore.listRooms();
 }
 
 setInterval(() => {
