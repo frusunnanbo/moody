@@ -1,3 +1,9 @@
+
+function listRooms() {
+    return window.fetch(`api/rooms/`)
+        .then(response => response.json());
+}
+
 function increaseMood(roomName, mood, callback) {
     window.fetch(`/api/rooms/${roomName}/increase`, {
         method: 'POST',
@@ -22,4 +28,4 @@ function unsubscribeForMoods(subscriptionId) {
     window.clearInterval(subscriptionId)
 }
 
-export { increaseMood, subscribeForMoods, unsubscribeForMoods };
+export { listRooms, increaseMood, subscribeForMoods, unsubscribeForMoods };

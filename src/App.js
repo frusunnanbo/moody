@@ -6,9 +6,19 @@ import {
 } from "react-router-dom";
 
 import './App.css';
+import * as MoodApi from "./lib/api/client"
 import Room from './components/Room';
+import { useState, useEffect } from "react";
 
 function App() {
+
+  const [rooms, setRooms] = useState([]);
+  
+  useEffect(() => {
+    MoodApi.listRooms()
+      .then(newRooms => setRooms(newRooms));
+  }, []);
+
   return (
       <Router>
         {/* A <Switch> looks through its children <Route>s and
@@ -21,25 +31,30 @@ function App() {
           <Room name="agileislands" />
         </Route>
         <Route path="/">
-          <Home />
+          <Home rooms={ rooms }/>
         </Route>
       </Switch>
     </Router>    
   );
 }
 
-function Home() {
+function Home({ rooms }) {
   return (
     <div>
       <ul>
-        <li>
-          <Link to="/main">Main</Link>
-        </li>
-        <li>
-          <Link to="/agileislands">Agile Islands</Link>
-        </li>
+        {rooms.map((room, i) => {
+          return <LinkListItem roomName={room} />;
+        })}
       </ul>
     </div>
+  );
+}
+
+function LinkListItem({ roomName }) {
+  return (
+    <li>
+      <Link to={"/" + roomName}>{ roomName }</Link>
+    </li>
   );
 }
 
