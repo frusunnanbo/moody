@@ -4,6 +4,12 @@ const database = {
         angry: 0,
         sad: 0,
         scared: 0,
+    },
+    agileislands: {
+        happy: 0,
+        angry: 0,
+        sad: 0,
+        scared: 0,
     }
 }
 
