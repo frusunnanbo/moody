@@ -26,12 +26,11 @@ function autoDecreaseMoods(moods) {
 }
 
 function increaseMood(roomName, mood) {
-    database[roomName][mood] = database[roomName][mood] + 1;
-    return database[roomName];
+    return firestore.increaseMood(roomName, mood);
 }
 
-function moods(roomName) {
-    return database[roomName];
+async function moods(roomName) {
+    return firestore.getMoods(roomName);
 }
 
 async function list() {

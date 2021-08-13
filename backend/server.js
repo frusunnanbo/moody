@@ -23,7 +23,8 @@ app.get('/api/rooms/', function (req, res) {
 });
 
 app.get('/api/rooms/:room', function (req, res) {
-    res.json(rooms.moods(req.params.room));
+    rooms.moods(req.params.room)
+        .then(moods => res.json(moods));
 });
 
 app.post('/api/rooms/:room/increase', function (req, res) {
