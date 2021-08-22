@@ -30,5 +30,10 @@ app.get('/api/rooms/:room', function (req, res) {
 app.post('/api/rooms/:room/increase', function (req, res) {
     res.json(rooms.increaseMood(req.params.room, req.body.mood));
 });
- 
+
+app.post('/api/rooms/autodecrease', function (req, res) {
+    rooms.decreaseMoods()
+        .then(rooms => res.json(rooms));
+})
+
 app.listen(process.env.PORT || 8080);
