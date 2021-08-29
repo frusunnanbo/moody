@@ -37,7 +37,7 @@ jobs:
         service: agile-islands-example
         region: europe-west1
         no_traffic: true
-        tag: ${{ github.sha }}
+        tag: ${{ github.sha::7 }}
         credentials: ${{ secrets.GCP_SA_KEY }}
 
     - name: Shift Traffic to New Version
@@ -47,7 +47,7 @@ jobs:
         image: gcr.io/agile-islands-example/moody:${{ github.sha }}
         service: agile-islands-example
         region: europe-west1
-        tag_traffic: ${{ github.sha }}=100
+        tag_traffic: ${{ github.sha::7 }}=100
         credentials: ${{ secrets.GCP_SA_KEY }}
 
     - name: Show Output
