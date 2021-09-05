@@ -1,0 +1,13 @@
+{
+  "name": "systemtest",
+  "version": "1.0.0",
+  "description": "Active monitoring of Moody",
+  "main": "index.js",
+  "repository": "github.com/frusunnanbo/moody",
+  "author": "Pia Fåk Sunnanbo",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

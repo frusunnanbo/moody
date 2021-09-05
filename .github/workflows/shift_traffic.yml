@@ -1,6 +1,6 @@
 on: workflow_dispatch
 
-name: Deploy!
+name: Shift traffic to next version
 
 jobs:
   deploy:
