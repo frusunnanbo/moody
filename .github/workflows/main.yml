@@ -5,7 +5,7 @@ on:
   pull_request:
     branches: [ main ]
 
-name: Deploy!
+name: Deploy Canary
 
 jobs:
   deploy:
@@ -37,18 +37,8 @@ jobs:
         service: agile-islands-example
         region: europe-west1
         no_traffic: true
-        tag: ${{ github.sha }::7}
-        credentials: ${{ secrets.GCP_SA_KEY }}
-
-    - name: Shift Traffic to New Version
-      id: deploy
-      uses: google-github-actions/deploy-cloudrun@v0.6.0
-      with:
-        image: gcr.io/agile-islands-example/moody:${{ github.sha }}
-        service: agile-islands-example
-        region: europe-west1
-        tag_traffic: ${{ github.sha }::7}=100
+        tag: next
         credentials: ${{ secrets.GCP_SA_KEY }}
 
     - name: Show Output
-      run: echo ${{ steps.deploy.outputs.url }}
+      run: echo ${{ steps.deploy-canary.outputs.url }}
