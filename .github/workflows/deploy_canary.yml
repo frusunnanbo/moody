@@ -2,8 +2,7 @@ on:
   push:
   # Triggers the workflow on push or pull request events but only for the main branch
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    paths-ignore: [ systemtest ]
 
 name: Deploy Canary
 
