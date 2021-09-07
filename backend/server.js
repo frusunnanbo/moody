@@ -13,10 +13,6 @@ app.get('/ping', function (req, res) {
     return res.send('pong');
 });
 
-app.get('/', function (req, res) {
-    res.sendFile(path.join(__dirname, '..', 'build', 'index.html'));
-});
-
 app.get('/api/rooms/', function (req, res) {
     rooms.list()
         .then(rooms => res.json(rooms))
@@ -35,5 +31,13 @@ app.post('/api/rooms/autodecrease', function (req, res) {
     rooms.decreaseMoods()
         .then(rooms => res.json(rooms));
 })
+
+app.get('/', function (req, res) {
+    res.sendFile(path.join(__dirname, '..', 'build', 'index.html'));
+});
+
+app.get('/:room', function (req, res) {
+    res.sendFile(path.join(__dirname, '..', 'build', 'index.html'));
+});
 
 app.listen(process.env.PORT || 8080);
