@@ -4,7 +4,7 @@ on:
     branches: [ main ]
     paths-ignore: [ systemtest/** ]
 
-name: Deploy Canary
+name: Deploy!
 
 jobs:
   deploy:
@@ -28,15 +28,13 @@ jobs:
         docker build -t gcr.io/agile-islands-example/moody:${{  github.sha }} .
         docker push gcr.io/agile-islands-example/moody:${{  github.sha }}
 
-    - name: Deploy Canary to Cloud Run
+    - name: Deploy to Cloud Run
       id: deploy-canary
       uses: google-github-actions/deploy-cloudrun@v0.6.0
       with:
         image: gcr.io/agile-islands-example/moody:${{ github.sha }}
         service: agile-islands-example
         region: europe-west1
-        no_traffic: true
-        tag: next
         credentials: ${{ secrets.GCP_SA_KEY }}
 
     - name: Show Output
