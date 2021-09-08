@@ -16,6 +16,7 @@ WORKDIR /usr/src/app/backend
 # Install backend dependencies
 ADD backend/server.js backend/package.json backend/yarn.lock ./
 RUN yarn
+COPY . ./
 
 EXPOSE 8080
 CMD [ "node","/usr/src/app/backend/server.js" ]
