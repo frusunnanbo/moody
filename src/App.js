@@ -32,6 +32,9 @@ function App() {
           <Home rooms={ rooms }/>
         </Route>
       </Switch>
+      <div className="Version">
+        v{process.env.REACT_APP_GIT_SHA}
+      </div>
     </Router>    
   );
 }
@@ -44,7 +47,6 @@ function Home({ rooms }) {
           return <LinkListItem key={ room }roomName={room} />;
         })}
       </ul>
-      <p>Version: {process.env.REACT_APP_GIT_SHA}</p>
     </div>
   );
 }

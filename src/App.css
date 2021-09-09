@@ -8,3 +8,10 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
 }
+
+.Version {
+  margin: 0.5em;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
