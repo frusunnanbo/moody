@@ -3,4 +3,55 @@
     width: 10em;
     border-radius: 1em;
     margin: 2em;
+    border-width: 1em;
+    border-style: solid;
+    background-color: white;
+}
+
+.MoodButton.happy {
+    background-color: rgba(256, 200, 0, 0.1);
+}
+
+.MoodButton.happy:hover {
+    background-color: rgba(256, 200, 0, 0.2);
+}
+
+.MoodButton.happy:active {
+    background-color: rgba(256, 200, 0, 0.3);
+}
+
+.MoodButton.sad {
+    background-color: rgba(0, 0, 256, 0.1);
+}
+
+.MoodButton.sad:hover {
+    background-color: rgba(0, 0, 256, 0.2);
+}
+
+.MoodButton.sad:active {
+    background-color: rgba(0, 0, 256, 0.3);
+}
+
+.MoodButton.angry {
+    background-color: rgba(256, 0, 0, 0.1);
+}
+
+.MoodButton.angry:hover {
+    background-color: rgba(256, 0, 0, 0.2);
+}
+
+.MoodButton.angry:active {
+    background-color: rgba(256, 0, 0, 0.3);
+}
+
+.MoodButton.scared {
+    background-color: rgba(0, 256, 0, 0.1);
+}
+
+.MoodButton.scared:hover {
+    background-color: rgba(0, 256, 0, 0.2);
+}
+
+.MoodButton.scared:active {
+    background-color: rgba(0, 256, 0, 0.3);
 }
