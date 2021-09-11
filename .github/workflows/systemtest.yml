@@ -2,7 +2,7 @@ on:
   push:
   # Triggers the workflow on push with changes to systemtest
     branches: [ main ]
-    paths: [ systemtest/** ]
+    paths: [ .github/workflows/**, systemtest/** ]
 
 name: Deploy Active Monitor
 
