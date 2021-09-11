@@ -1,27 +1,20 @@
-import { useState, useEffect } from 'react';
 import * as MoodApi from "../lib/api/client"
+import { useMoods } from '../lib/hooks/useMoods';
 import MoodButton from "./MoodButton";
 
 import './Room.css'
 
 function Room({ name }) {
-    const [moods, updateMoods] = useState({
-            happy: 0,
-            angry: 0,
-            sad: 0,
-            scared: 0,
-    })
-    useEffect(() => {
-        const subscriberId = MoodApi.subscribeForMoods(name, updateMoods);
-        return () => {
-            MoodApi.unsubscribeForMoods(subscriberId)
-        };
-    }, [name]);
+    const [moods, updateMoods] = useMoods(name);
 
-    const intensityIncreaser = function(mood) {
+    const intensityIncreaser = function (mood) {
         return function () {
             MoodApi.increaseMood(name, mood, updateMoods);
         }
+    }
+
+    if (!moods) {
+        return <div className="Room"></div>;
     }
 
     return <div className="Room">
@@ -30,7 +23,7 @@ function Room({ name }) {
             text="I'm happy"
             baseColor={{ r: 256, b: 0, g: 256 }}
             intensity={moods.happy}
-            increaseIntensity={ intensityIncreaser("happy") }
+            increaseIntensity={intensityIncreaser("happy")}
         />
         <MoodButton
             mood="sad"
@@ -44,7 +37,7 @@ function Room({ name }) {
             text="I'm angry"
             baseColor={{ r: 256, b: 0, g: 0 }}
             intensity={moods.angry}
-            increaseIntensity={ intensityIncreaser("angry") }
+            increaseIntensity={intensityIncreaser("angry")}
         />
         <MoodButton
             mood="scared"
@@ -53,7 +46,7 @@ function Room({ name }) {
             intensity={moods.scared}
             increaseIntensity={intensityIncreaser("scared")}
         />
-    </div>
+    </div>;
 }
 
 export default Room;
