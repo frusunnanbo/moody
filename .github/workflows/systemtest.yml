@@ -4,7 +4,7 @@ on:
     branches: [ main ]
     paths: [ systemtest/** ]
 
-name: Deploy Systemtest
+name: Deploy Active Monitor
 
 jobs:
   deploy:
@@ -33,9 +33,9 @@ jobs:
       uses: google-github-actions/deploy-cloudrun@v0.6.0
       with:
         image: gcr.io/agile-islands-example/systemtest:${{ github.sha }}
-        service: systemtest
+        service: active-monitor
         region: europe-west1
         credentials: ${{ secrets.GCP_SA_KEY }}
 
     - name: Show Output
-      run: echo ${{ steps.deploy-canary.outputs.url }}
+      run: echo ${{ steps.deploy.outputs.url }}
