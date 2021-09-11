@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 
 const rooms = require('./rooms')
+const featureFlags = require('./featureFlags')
 
 const app = express();
 app.use(express.static(path.join(__dirname, '..', 'build')));
@@ -30,11 +31,11 @@ app.post('/api/rooms/:room/increase', function (req, res) {
 app.post('/api/rooms/autodecrease', function (req, res) {
     rooms.decreaseMoods()
         .then(rooms => res.json(rooms));
-})
+});
 
 app.get('/api/feature-flags/:room', function (req, res) {
-    res.json({ "curious-mood": false });
-})
+    res.json(featureFlags.inRoom(req.params.room));
+});
 
 app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname, '..', 'build', 'index.html'));
