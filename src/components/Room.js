@@ -9,7 +9,7 @@ function Room({ name }) {
 
     const intensityIncreaser = function (mood) {
         return function () {
-            MoodApi.increaseMood(name, mood, updateMoods);
+            MoodApi.increaseMood(name, mood);
         }
     }
 

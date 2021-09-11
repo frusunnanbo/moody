@@ -4,14 +4,13 @@ function listRooms() {
 }
 
 function increaseMood(roomName, mood, callback) {
-    window.fetch(`/api/rooms/${roomName}/increase`, {
+    return window.fetch(`/api/rooms/${roomName}/increase`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({ mood: mood }),
-    })
-    .then(response => callback(response.json()))
+    });
 }
 
 function subscribeForMoods(roomName, updateHandler) {
