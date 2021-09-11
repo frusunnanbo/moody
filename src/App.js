@@ -53,9 +53,11 @@ function Home({ rooms }) {
 
 function RoomLink({ roomName }) {
   return (
-    <div className="RoomLink">
-      <Link to={"/" + roomName}>{ roomName }</Link>
-    </div>
+    <Link to={"/" + roomName}>
+      <div className="RoomLink">
+        { roomName }
+      </div>
+    </Link>
   );
 }
 

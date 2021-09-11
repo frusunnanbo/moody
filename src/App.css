@@ -15,14 +15,8 @@
   color: #1B4F72;
 }
 
-.RoomLink :link {
-  color: inherit;
-  text-decoration: none;
-}
-
-.RoomLink :visited {
-  color: inherit;
-  text-decoration: none;
+:link {
+  text-decoration: none;  
 }
 
 .Version {
