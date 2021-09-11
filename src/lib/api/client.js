@@ -33,7 +33,8 @@ function fetchMoods(roomName) {
 }
 
 function fetchFeatureFlags(flag, roomName) {
-    return Promise.resolve({ "curious-mood": true});
+    return window.fetch(`/api/feature-flags/${roomName}`)
+        .then(response => response.json());
 }
 
 export {

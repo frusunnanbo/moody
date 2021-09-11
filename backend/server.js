@@ -32,6 +32,10 @@ app.post('/api/rooms/autodecrease', function (req, res) {
         .then(rooms => res.json(rooms));
 })
 
+app.get('/api/feature-flags/:room', function (req, res) {
+    res.json({ "curious-mood": false });
+})
+
 app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname, '..', 'build', 'index.html'));
 });
