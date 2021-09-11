@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import * as MoodApi from "../lib/api/client"
 import MoodButton from "./MoodButton";
 
+import './Room.css'
+
 function Room({ name }) {
     const [moods, updateMoods] = useState({
             happy: 0,
@@ -22,7 +24,7 @@ function Room({ name }) {
         }
     }
 
-    return <div className="App"> 
+    return <div className="Room">
         <MoodButton
             mood="happy"
             text="I'm happy"

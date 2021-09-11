@@ -41,21 +41,21 @@ function App() {
 
 function Home({ rooms }) {
   return (
-    <div>
-      <ul>
+    <div className="RoomList">
+      <h1>Hi there!</h1>
+      <p>Please enter a room</p>
         {rooms.map((room) => {
-          return <LinkListItem key={ room }roomName={room} />;
+          return <RoomLink key={ room } roomName={room} />;
         })}
-      </ul>
     </div>
   );
 }
 
-function LinkListItem({ roomName }) {
+function RoomLink({ roomName }) {
   return (
-    <li>
+    <div className="RoomLink">
       <Link to={"/" + roomName}>{ roomName }</Link>
-    </li>
+    </div>
   );
 }
 

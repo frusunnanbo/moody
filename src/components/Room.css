@@ -1,0 +1,10 @@
+.Room {
+  text-align: center;
+  min-height: 100vh;  
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+}
