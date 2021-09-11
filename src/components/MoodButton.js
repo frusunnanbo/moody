@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import './MoodButton.css';
 
 const StyledButton = styled.button`
     height: 10em;
