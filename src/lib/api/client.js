@@ -32,4 +32,14 @@ function fetchMoods(roomName) {
         .then(response => response.json());
 }
 
-export { listRooms, increaseMood, subscribeForMoods, unsubscribeForMoods };
+function fetchFeatureFlags(flag, roomName) {
+    return Promise.resolve({ "curious-mood": true});
+}
+
+export {
+    listRooms,
+    increaseMood,
+    subscribeForMoods,
+    unsubscribeForMoods,
+    fetchFeatureFlags
+};
