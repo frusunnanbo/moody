@@ -14,6 +14,9 @@ const StyledButton = styled.button`
     &:hover {
         background-color: ${props => props.hoverColor};
     }
+    &:active {
+        background-color: ${props => props.activeColor};
+    }
 `;
 
 function withAlpha(color, alpha) {
