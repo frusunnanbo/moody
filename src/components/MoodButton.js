@@ -6,7 +6,7 @@ const StyledButton = styled.button`
     width: 10em;
     border-radius: 1em;
     margin: 2em;
-    border-width: 1em;
+    border-width: 1px;
     border-style: solid;
     border-color: ${props => props.borderColor};
     background-color: ${props => props.backgroundColor};
@@ -26,10 +26,10 @@ function withAlpha(color, alpha) {
 function MoodButton({ text, baseColor, intensity, increaseIntensity }) {
 
     return <StyledButton
-        backgroundColor={ withAlpha(baseColor, 0.1) }
-        hoverColor={ withAlpha(baseColor, 0.2)}
-        activeColor={ withAlpha(baseColor, 0.3)}
-        borderColor={ withAlpha(baseColor, intensity * 0.01)}
+        backgroundColor={ withAlpha(baseColor, intensity * 0.01) }
+        hoverColor={ withAlpha(baseColor, intensity ? intensity * 0.03 : 0.1)}
+        activeColor={ withAlpha(baseColor, intensity ? intensity * 0.05 : 0.15)}
+        borderColor={ withAlpha(baseColor, 0.4)}
         onClick={increaseIntensity}
         >
         {text}
