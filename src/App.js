@@ -2,6 +2,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
+  Redirect,
   Link
 } from "react-router-dom";
 
@@ -18,6 +19,8 @@ function App() {
       .then(newRooms => setRooms(newRooms));
   }, []);
 
+  const defaultRoom = "agileislands";
+
   return (
     <Router>
       <Switch>
@@ -27,9 +30,12 @@ function App() {
               <Room name={ room } />
             </Route>
           );
-        }) }
-        <Route path="/">
+        })}
+        <Route path="/rooms">
           <Home rooms={ rooms }/>
+        </Route>
+        <Route path="/">
+          <Redirect to={"/" + defaultRoom} />
         </Route>
       </Switch>
       <div className="Version">
