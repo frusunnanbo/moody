@@ -23,7 +23,7 @@ function withAlpha(color, alpha) {
     return `rgba(${color.r}, ${color.g}, ${color.b}, ${alpha})`;
 }
 
-function MoodButton({ mood, text, baseColor, intensity, increaseIntensity }) {
+function MoodButton({ text, baseColor, intensity, increaseIntensity }) {
 
     return <StyledButton
         backgroundColor={ withAlpha(baseColor, 0.1) }
