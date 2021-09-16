@@ -5,7 +5,7 @@ import MoodButton from "./MoodButton";
 import './Room.css'
 
 function Room({ name }) {
-    const [moods, updateMoods] = useMoods(name);
+    const [moods] = useMoods(name);
 
     const intensityIncreaser = function (mood) {
         return function () {
