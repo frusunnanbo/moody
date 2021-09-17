@@ -1,4 +1,6 @@
-FROM node:14 as build-deps
+FROM node:14
+
+ARG REACT_APP_GIT_SHA
 
 # Create frontend directory
 WORKDIR /usr/src/app/frontend
@@ -9,8 +11,7 @@ RUN yarn
 COPY frontend .
 
 # build an optimized frontend build
-ENV REACT_APP_GIT_SHA="$(git rev-parse --short HEAD)"
-RUN yarn build
+RUN REACT_APP_GIT_SHA=$REACT_APP_GIT_SHA yarn build
 
 WORKDIR /usr/src/app/backend
 
