@@ -2,7 +2,7 @@ on:
   push:
   # Triggers the workflow on push or pull request events but only for the main branch
     branches: [ main ]
-    paths-ignore: [ systemtest/** ]
+    paths-ignore: [ active-monitor/** ]
 
 name: Deploy!
 

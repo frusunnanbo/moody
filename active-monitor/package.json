@@ -1,5 +1,5 @@
 {
-  "name": "systemtest",
+  "name": "active-monitor",
   "version": "1.0.0",
   "description": "Active monitoring of Moody",
   "main": "index.js",

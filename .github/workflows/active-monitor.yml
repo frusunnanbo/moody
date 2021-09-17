@@ -2,7 +2,7 @@ on:
   push:
   # Triggers the workflow on push with changes to systemtest
     branches: [ main ]
-    paths: [ .github/workflows/**, systemtest/** ]
+    paths: [ .github/workflows/**, active-monitor/** ]
 
 name: Deploy Active Monitor
 
@@ -25,14 +25,14 @@ jobs:
 
     - name: Build and Push Container
       run: |-
-        docker build -t gcr.io/agile-islands-example/systemtest:${{  github.sha }} systemtest
-        docker push gcr.io/agile-islands-example/systemtest:${{  github.sha }}
+        docker build -t gcr.io/agile-islands-example/active-monitor:${{  github.sha }} active-monitor
+        docker push gcr.io/agile-islands-example/active-monitor:${{  github.sha }}
 
     - name: Deploy to Cloud Run
       id: deploy
       uses: google-github-actions/deploy-cloudrun@v0.6.0
       with:
-        image: gcr.io/agile-islands-example/systemtest:${{ github.sha }}
+        image: gcr.io/agile-islands-example/active-monitor:${{ github.sha }}
         service: active-monitor
         region: europe-west1
         credentials: ${{ secrets.GCP_SA_KEY }}
