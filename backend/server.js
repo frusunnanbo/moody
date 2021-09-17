@@ -7,12 +7,8 @@ const rooms = require('./rooms')
 const featureFlags = require('./featureFlags')
 
 const app = express();
-app.use(express.static(path.join(__dirname, '..', 'build')));
+app.use(express.static(path.join(__dirname, '..', 'frontend', 'build')));
 app.use(bodyParser.json({type: 'application/json'}));
-
-app.get('/ping', function (req, res) {
-    return res.send('pong');
-});
 
 app.get('/api/rooms/', function (req, res) {
     rooms.list()
