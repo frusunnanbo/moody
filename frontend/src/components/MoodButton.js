@@ -22,14 +22,14 @@ function withAlpha(color, alpha) {
 }
 
 function MoodButton({ text, baseColor, intensity, increaseIntensity }) {
-  const minOpacity = 0.1;
-  const backgroundOpacity = minOpacity + intensity * 0.4
+  const minOpacity = 0.05;
+  const backgroundOpacity = minOpacity + intensity * 0.6
 
   return (
     <StyledButton
       backgroundColor={withAlpha(baseColor, backgroundOpacity)}
-      hoverColor={withAlpha(baseColor, backgroundOpacity + 0.1)}
-      activeColor={withAlpha(baseColor, backgroundOpacity + 0.2)}
+      hoverColor={withAlpha(baseColor, backgroundOpacity + 0.05)}
+      activeColor={withAlpha(baseColor, backgroundOpacity + 0.1)}
       onClick={increaseIntensity}
     >
       {text}
