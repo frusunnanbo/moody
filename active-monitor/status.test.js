@@ -5,6 +5,6 @@ const url = "https://moody.frusunnanbo.se";
 describe("Moody", () => {
   it("is alive", async function() {
     const response = await fetch(url);
-    expect(response).toHaveProperty("status", 200);
+    expect(response).toHaveProperty("status", 400);
   });
 });
