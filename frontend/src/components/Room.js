@@ -32,7 +32,6 @@ function Room({ name }) {
   }
 
   const relatives = relativeIntensities(moods);
-  console.log(relatives);
 
   return (
     <RoomDiv>
@@ -66,7 +65,6 @@ function Room({ name }) {
 
 function relativeIntensities(moods) {
   const sum = Object.keys(moods).reduce((acc, mood) => acc + moods[mood], 0);
-  console.log(sum);
   if (sum === 0) {
     return moods;
   }
