@@ -34,7 +34,7 @@ function App() {
         <Route path="/rooms">
           <Home rooms={ rooms }/>
         </Route>
-        <Route path="/">
+        <Route path="/" exact="true">
           <Redirect to={"/" + defaultRoom} />
         </Route>
       </Switch>
