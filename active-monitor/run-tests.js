@@ -19,7 +19,9 @@ function filterResults(jestResult) {
 }
 
 function runTests(url) {
-  process.env.BASE_URL = url;
+  if (url) {
+    process.env.BASE_URL = url;
+  }
   return jest
     .runCLI({ }, ["."])
     .then((result) => {
