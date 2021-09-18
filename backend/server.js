@@ -21,7 +21,8 @@ app.get('/api/rooms/:room', function (req, res) {
 });
 
 app.post('/api/rooms/:room/increase', function (req, res) {
-    res.json(rooms.increaseMood(req.params.room, req.body.mood));
+  rooms.increaseMood(req.params.room, req.body.mood)
+    .then(room => res.json(room));
 });
 
 app.post('/api/rooms/autodecrease', function (req, res) {
