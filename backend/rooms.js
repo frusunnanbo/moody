@@ -1,25 +1,23 @@
-const firestore = require('./database');
-const logger = require('./logger');
+const database = require('./database');
 
 function increaseMood(roomName, mood) {
-    return firestore.increaseMood(roomName, mood);
+    return database.increaseMood(roomName, mood);
 }
 
 async function moods(roomName) {
-    return firestore.getMoods(roomName);
+    return database.getMoods(roomName);
 }
 
 async function list() {
-    return firestore.listRooms();
+    return database.listRooms();
 }
 
 async function decreaseMoods() {
-    const rooms = await firestore.listRooms();
-    logger.info(JSON.stringify(rooms));
+    const rooms = await database.listRooms();
     const roomObjects = rooms.reduce((acc, roomName) => acc[roomName] = {})
     return Promise.all(
         rooms.map(roomName =>
-            firestore.decreaseMoods(roomName)
+            database.decreaseMoods(roomName)
                 .then(room => roomObjects[roomName] = room))
     ).then(rooms => roomObjects);
 }
