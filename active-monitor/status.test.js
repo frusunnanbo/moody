@@ -15,7 +15,6 @@ describe("Moody at " + url, () => {
     );
     // increase twice in case autodecrease kicks in
     await increaseMood(testRoom, "happy");
-    await increaseMood(testRoom, "happy");
     const after = await fetch(roomUrl(testRoom)).then((response) =>
       response.json()
     );
