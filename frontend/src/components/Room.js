@@ -16,11 +16,14 @@ const RoomDiv = styled.div`
 `;
 
 function Room({ name }) {
-  const [moods] = useMoods(name);
+  const [moods, updateMoods] = useMoods(name);
 
   const intensityIncreaser = function (mood) {
     return function () {
-      MoodApi.increaseMood(name, mood);
+      MoodApi.increaseMood(name, mood).then((moods) => {
+        console.log(moods);
+        updateMoods(moods);
+      });
     };
   };
 
