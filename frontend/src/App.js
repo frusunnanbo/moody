@@ -4,12 +4,13 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
-import styled from "styled-components";
+
 import { useState, useEffect } from "react";
 
 import * as MoodApi from "./lib/api/client";
 import Home from "./components/Home";
 import Room from "./components/Room";
+import Version from "./components/Version";
 
 function App() {
   const [rooms, setRooms] = useState([]);
@@ -17,8 +18,6 @@ function App() {
   useEffect(() => {
     MoodApi.listRooms().then(setRooms);
   }, []);
-
-  
 
   if (rooms.length < 1) {
     return <Router>
@@ -52,18 +51,6 @@ function App() {
       <Version />
     </Router>
   );
-}
-
-const VersionDiv = styled.div`
-  margin: 0.5em;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-`;
-
-function Version() {
-  const version = (process.env.REACT_APP_GIT_SHA || "unknown").slice(0, 7);
-  return <VersionDiv>v{version}</VersionDiv>;
 }
 
 export default App;
