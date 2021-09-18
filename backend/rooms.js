@@ -8,7 +8,7 @@ async function moods(roomName) {
   return database.getMoods(roomName);
 }
 
-async function list() {
+function list() {
   return database.listRooms();
 }
 

@@ -4,16 +4,10 @@ const logger = require("./logger");
 const firestore = new Firestore();
 
 async function listRooms() {
-  const roomDocuments = await firestore.collection("rooms").listDocuments();
-
-  return roomDocuments.reduce(async (document) => {
-    const snapshot = await document.get();
-    const room = snapshot.data();
-    rooms[document.id] = { hidden: room.hidden, defaultRoom: room.default };
-    logger.info(JSON.stringify(rooms));
-  });
-  logger.info(JSON.stringify(rooms));
-  return rooms;
+  return firestore
+    .collection("rooms")
+    .listDocuments()
+    .then((roomDocuments) => roomDocuments.map((document) => document.id));
 }
 
 async function getMoods(roomName) {
