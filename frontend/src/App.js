@@ -25,15 +25,15 @@ function App() {
       <Switch>
         {rooms.map((room) => {
           return (
-            <Route key={room} path={"/" + room}>
-              <Room name={room} />
+            <Route key={room.name} path={"/" + room.name}>
+              <Room name={room.name} />
             </Route>
           );
         })}
         <Route path="/rooms">
           <Home rooms={rooms} />
         </Route>
-        <Route path="/" exact="true">
+        <Route path="/" exact={true}>
           <Redirect to={"/" + defaultRoom} />
         </Route>
       </Switch>
@@ -49,12 +49,13 @@ const RoomList = styled.div`
 `;
 
 function Home({ rooms }) {
+  const visibleRooms = rooms.filter(room => !room.hidden);
   return (
     <RoomList>
       <h1>Hi there!</h1>
       <p>Please enter a room</p>
-      {rooms.map((room) => {
-        return <RoomLink key={room} roomName={room} />;
+      {visibleRooms.map((room) => {
+        return <RoomLink key={room.name} roomName={room.name} />;
       })}
     </RoomList>
   );

@@ -8,8 +8,11 @@ async function moods(roomName) {
   return database.getMoods(roomName);
 }
 
-function list() {
-  return database.listRooms();
+async function list() {
+  const rooms = await database.listRooms();
+  return Promise.all(
+    rooms.map((roomName) => database.getProperties(roomName))
+  );
 }
 
 async function decreaseMoods() {

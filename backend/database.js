@@ -10,6 +10,17 @@ async function listRooms() {
     .then((roomDocuments) => roomDocuments.map((document) => document.id));
 }
 
+function getProperties(roomName) {
+  return firestore
+    .collection("rooms")
+    .doc(roomName)
+    .get()
+    .then((snapshot) => {
+      const room = snapshot.data();
+      return { name: roomName, hidden: room.hidden, defaultRoom: room.default };
+    });
+}
+
 async function getMoods(roomName) {
   const moods = await firestore
     .collection("rooms")
@@ -56,6 +67,7 @@ async function decreaseMoods(roomName) {
 
 module.exports = {
   listRooms,
+  getProperties,
   getMoods,
   increaseMood,
   decreaseMoods,
