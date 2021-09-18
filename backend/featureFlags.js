@@ -1,13 +1,13 @@
 const flags = {
-    "agileislands": {
-        "curious-mood": true
-    }
-}
+  agileislands: {
+    "curious-mood": true,
+  },
+};
 
 function inRoom(roomName) {
-    return flags[roomName] || {};
+  return flags[roomName] || {};
 }
 
 module.exports = {
-    inRoom
+  inRoom,
 };
