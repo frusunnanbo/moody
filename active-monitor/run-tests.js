@@ -1,5 +1,7 @@
 const jest = require("jest");
 
+const defaultUrl = "https://moody.frusunnanbo.se";
+
 function filterTestResult(jestTestResult) {
   return {
     fullName: jestTestResult.fullName,
@@ -19,14 +21,10 @@ function filterResults(jestResult) {
 }
 
 function runTests(url) {
-  if (url) {
-    process.env.BASE_URL = url;
-  }
-  return jest
-    .runCLI({ }, ["."])
-    .then((result) => {
-      return filterResults(result.results);
-    });
+  process.env.BASE_URL = url || defaultUrl;
+  return jest.runCLI({}, ["."]).then((result) => {
+    return filterResults(result.results);
+  });
 }
 
 module.exports = {
