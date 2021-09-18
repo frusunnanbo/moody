@@ -1,5 +1,7 @@
-const status = require("./status.js");
 const express = require("express");
+
+const status = require("./status.js");
+const tests = require("./run-tests.js");
 
 const app = express();
 
@@ -9,6 +11,10 @@ app.get("/status", function (req, res) {
   return res.send(status.get());
 });
 
+app.get("/test-status", function (req, res) {
+  return tests.runTests().then((result) => res.json(result));
+});
+
 status.checkAtInterval(EVERY_FIVE_MINUTES);
 
-app.listen(process.env.PORT || 8080);
+app.listen(process.env.PORT || 8081);
