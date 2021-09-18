@@ -41,6 +41,7 @@
   },
   "proxy": "http://localhost:8080",
   "devDependencies": {
-    "nodemon": "^2.0.12"
+    "nodemon": "^2.0.12",
+    "prettier": "2.4.1"
   }
 }

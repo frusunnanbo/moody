@@ -23,7 +23,7 @@ function withAlpha(color, alpha) {
 
 function MoodButton({ text, baseColor, intensity, increaseIntensity }) {
   const minOpacity = 0.05;
-  const backgroundOpacity = minOpacity + intensity * 0.6
+  const backgroundOpacity = minOpacity + intensity * 0.6;
 
   return (
     <StyledButton

@@ -1,20 +1,18 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
-import { fetchFeatureFlags } from '../api/client';
+import { fetchFeatureFlags } from "../api/client";
 
 export const useFeatureFlag = (flag, roomName) => {
-  
-  const [state, setState] = useState()
+  const [state, setState] = useState();
 
   useEffect(() => {
-    setState(undefined)
+    setState(undefined);
 
-    fetchFeatureFlags(flag, roomName)
-      .then((flags) => {
-          const flagActive = !!flags[flag]
-        setState(flagActive);
-      })
+    fetchFeatureFlags(flag, roomName).then((flags) => {
+      const flagActive = !!flags[flag];
+      setState(flagActive);
+    });
   }, [flag, roomName]);
 
-  return state
-}
+  return state;
+};

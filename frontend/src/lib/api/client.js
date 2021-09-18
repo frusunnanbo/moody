@@ -7,9 +7,9 @@ function increaseMood(roomName, mood) {
     .fetch(`/api/rooms/${roomName}/increase`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify({ mood: mood })
+      body: JSON.stringify({ mood: mood }),
     })
     .then((response) => response.json())
     .then((room) => room.moods);
@@ -44,5 +44,5 @@ export {
   increaseMood,
   subscribeForMoods,
   unsubscribeForMoods,
-  fetchFeatureFlags
+  fetchFeatureFlags,
 };
