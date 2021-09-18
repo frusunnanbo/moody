@@ -15,10 +15,16 @@ function App() {
   const [rooms, setRooms] = useState([]);
 
   useEffect(() => {
-    MoodApi.listRooms().then((newRooms) => setRooms(newRooms));
+    MoodApi.listRooms().then(setRooms);
   }, []);
 
-  const defaultRoom = "agileislands";
+  if (rooms.length < 1) {
+    return <Router>
+      <Version version={process.env.REACT_APP_GIT_SHA} / >
+    </Router>
+  }
+
+  const defaultRoom = rooms.find((room) => room.defaultRoom);
 
   return (
     <Router>
@@ -34,7 +40,11 @@ function App() {
           <Home rooms={rooms} />
         </Route>
         <Route path="/" exact={true}>
-          <Redirect to={"/" + defaultRoom} />
+          {defaultRoom ? (
+            <Redirect to={"/" + defaultRoom.name} />
+          ) : (
+            <Redirect to="/rooms" />
+          )}
         </Route>
       </Switch>
       <Version version={process.env.REACT_APP_GIT_SHA} />
@@ -49,7 +59,7 @@ const RoomList = styled.div`
 `;
 
 function Home({ rooms }) {
-  const visibleRooms = rooms.filter(room => !room.hidden);
+  const visibleRooms = rooms.filter((room) => !room.hidden);
   return (
     <RoomList>
       <h1>Hi there!</h1>
