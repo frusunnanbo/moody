@@ -1,8 +1,20 @@
+import styled from 'styled-components';
+
 import * as MoodApi from "../lib/api/client"
 import { useMoods } from '../lib/hooks/useMoods';
 import MoodButton from "./MoodButton";
 
-import './Room.css'
+
+const RoomDiv = styled.div`
+  text-align: center;
+  min-height: 100vh;  
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin); 
+`;
 
 function Room({ name }) {
     const [moods] = useMoods(name);
@@ -14,10 +26,10 @@ function Room({ name }) {
     }
 
     if (!moods) {
-        return <div className="Room"></div>;
+        return <RoomDiv></RoomDiv>;
     }
 
-    return <div className="Room">
+    return <RoomDiv>
         <MoodButton
             text="I'm happy"
             baseColor={{ r: 256, b: 0, g: 256 }}
@@ -42,7 +54,7 @@ function Room({ name }) {
             intensity={moods.scared}
             increaseIntensity={intensityIncreaser("scared")}
         />
-    </div>;
+    </RoomDiv>;
 }
 
 export default Room;
