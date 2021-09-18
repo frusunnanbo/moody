@@ -18,17 +18,13 @@ function filterResults(jestResult) {
   };
 }
 
-function runTests() {
-  const projectRootPath = ".";
-
-  return jest.runCLI({ colors: false }, [projectRootPath]).then((result) => {
-    if (result.results.success) {
-      console.log(`Tests completed`);
-    } else {
-      console.error(`Tests failed`);
-    }
-    return filterResults(result.results);
-  });
+function runTests(url) {
+  process.env.BASE_URL = url;
+  return jest
+    .runCLI({ }, ["."])
+    .then((result) => {
+      return filterResults(result.results);
+    });
 }
 
 module.exports = {
