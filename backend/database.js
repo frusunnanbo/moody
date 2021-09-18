@@ -23,8 +23,10 @@ async function getMoods(roomName) {
 
 async function increaseMood(roomName, mood) {
   const document = await firestore.collection("rooms").doc(roomName);
-  const result =  await firestore.runTransaction(async (transaction) => {
-    const room = await transaction.get(document).then((snapshot) => snapshot.data());
+  const result = await firestore.runTransaction(async (transaction) => {
+    const room = await transaction
+      .get(document)
+      .then((snapshot) => snapshot.data());
     room.moods[mood] = room.moods[mood] + 1;
 
     await transaction.set(document, room);
@@ -33,20 +35,24 @@ async function increaseMood(roomName, mood) {
   return result;
 }
 
-// TODO transaction!
 async function decreaseMoods(roomName) {
   const document = await firestore.collection("rooms").doc(roomName);
 
-  const room = await document.get().then((snapshot) => snapshot.data());
+  const transactionResult = await firestore.runTransaction(
+    async (transaction) => {
+      const room = await transaction
+        .get(document)
+        .then((snapshot) => snapshot.data());
 
-  logger.info(JSON.stringify(room));
+      Object.keys(room.moods).forEach((mood) => {
+        room.moods[mood] = Math.max(0, room.moods[mood] - 1);
+      });
 
-  Object.keys(room.moods).forEach((mood) => {
-    room.moods[mood] = Math.max(0, room.moods[mood] - 1);
-  });
-
-  await document.set(room);
-  return room;
+      await transaction.set(document, room);
+      return room;
+    }
+  );
+  return transactionResult;
 }
 
 module.exports = {
