@@ -1,6 +1,6 @@
 const flags = {
   agileislands: {
-    "curious-mood": true,
+    "example-flag": true,
   },
 };
 
