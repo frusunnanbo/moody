@@ -52,3 +52,18 @@ jobs:
 
     - name: Show Output
       run: echo ${{ steps.deploy-canary.outputs.url }}
+
+    - name: Run Smoke Tests on Canary
+      working-directory: ./active-monitor
+      run: | 
+        yarn
+        yarn test
+
+    - name: Shift Traffic to Next Version
+      id: shift-traffic
+      uses: google-github-actions/deploy-cloudrun@v0.6.0
+      with:
+        service: moody
+        region: europe-west1
+        tag_traffic: next=100
+        credentials: ${{ secrets.GCP_SA_KEY }}
