@@ -1,0 +1,16 @@
+import { useFeatureFlag } from "../lib/hooks/useFeatureFlag";
+
+const enableCurious = useFeatureFlag(name, "curious-mood");
+
+      {enableCurious && (
+        <MoodButton
+          text="I feel curious"
+          baseColor={{ r: 128, b: 128, g: 0 }}
+          intensity={relatives.curious}
+          increaseIntensity={intensityIncreaser("curious")}
+        />
+      )}
+
+sandbox: {
+  "curious-mood": true,
+}
