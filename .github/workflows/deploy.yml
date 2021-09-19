@@ -39,14 +39,16 @@ jobs:
         cache-from: type=registry,ref=gcr.io/agile-islands-example/moody:cache
         cache-to: type=inline,ref=gcr.io/agile-islands-example/moody:cache
 
-    - name: Deploy to Cloud Run
-      id: deploy
+    - name: Deploy Canary to Cloud Run
+      id: deploy-canary
       uses: google-github-actions/deploy-cloudrun@v0.6.0
       with:
         image: gcr.io/agile-islands-example/moody:${{ github.sha }}
         service: moody
         region: europe-west1
+        tag: next
+        no_traffic: true
         credentials: ${{ secrets.GCP_SA_KEY }}
 
     - name: Show Output
-      run: echo ${{ steps.deploy.outputs.url }}
+      run: echo ${{ steps.deploy-canary.outputs.url }}
