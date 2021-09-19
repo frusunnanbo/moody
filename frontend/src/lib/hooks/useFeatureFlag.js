@@ -2,17 +2,17 @@ import { useState, useEffect } from "react";
 
 import { fetchFeatureFlags } from "../api/client";
 
-export const useFeatureFlag = (flag, roomName) => {
+export const useFeatureFlag = (roomName, flag) => {
   const [state, setState] = useState();
 
   useEffect(() => {
     setState(undefined);
 
-    fetchFeatureFlags(flag, roomName).then((flags) => {
+    fetchFeatureFlags(roomName).then((flags) => {
       const flagActive = !!flags[flag];
       setState(flagActive);
     });
-  }, [flag, roomName]);
+  }, [roomName, flag]);
 
   return state;
 };

@@ -33,7 +33,7 @@ function fetchMoods(roomName) {
     .then((response) => response.json());
 }
 
-function fetchFeatureFlags(flag, roomName) {
+function fetchFeatureFlags(roomName) {
   return window
     .fetch(`/api/feature-flags/${roomName}`)
     .then((response) => response.json());
