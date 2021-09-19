@@ -5,7 +5,7 @@ const url = process.env.BASE_URL || "http://localhost:3000";
 
 describe("Moody at " + url, function() {
   const testRoom = "test";
-  jest.setTimeout(65000);
+  jest.setTimeout(120000);
 
   it("is alive", async function () {
     const response = await fetch(url);
