@@ -8,5 +8,5 @@ COPY package.json yarn.lock ./
 RUN yarn
 COPY . ./
 
-EXPOSE 8080
+EXPOSE 8081
 CMD [ "node","/usr/src/app/server.js" ]
