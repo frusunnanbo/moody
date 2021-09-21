@@ -9,7 +9,7 @@ const VersionDiv = styled.div`
 
 function Version() {
   const version = (process.env.REACT_APP_GIT_SHA || "unknown").slice(0, 7);
-  return <VersionDiv>verison: {version}</VersionDiv>;
+  return <VersionDiv>version: {version}</VersionDiv>;
 }
 
 export default Version;
