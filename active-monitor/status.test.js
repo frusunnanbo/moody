@@ -20,7 +20,7 @@ describe("Moody at " + url, function() {
     expect(after.happy).toBeGreaterThan(before.happy);
   });
 
-  xit("auto decreases moods", async function () {
+  it("auto decreases moods", async function () {
     let initial = await getMoods(testRoom);
     if (initial.happy == 0) {
       initial = (await increaseMood(testRoom, "happy")).moods;
